@@ -207,10 +207,10 @@
             const productForm = document.getElementById('productForm');
             const productsContainer = document.getElementById('productsContainer');
             
-            // Array para armazenar os produtos
+            
             let products = JSON.parse(localStorage.getItem('products')) || [];
             
-            // Função para renderizar os produtos
+            
             function renderProducts() {
                 console.log('Renderizando produtos... Nº de produtos:', products.length);
                 productsContainer.innerHTML = '';
@@ -241,7 +241,7 @@
                 });
             }
             
-            // Função para adicionar um novo produto
+            
             productForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 console.log('Formulário enviado');
@@ -252,7 +252,7 @@
 
                 console.log('Valores:', {productName, productCategory, productPrice});
                 
-                // Validation
+                
                 if (!productName) {
                     alert('Por favor, informe o nome do produto!');
                     return;
@@ -266,7 +266,7 @@
                     return;
                 }
 
-                // Verificar se produto com mesmo nome (case-insensitive e trim) já existe
+                
                 const trimmedProductName = productName.trim();
                 if (!trimmedProductName) {
                     alert('Por favor, informe um nome de produto válido!');
@@ -289,16 +289,16 @@
                     completed: false
                 };
                 
-                // Adiciona o novo produto ao array
+                
                 products.push(newProduct);
                 localStorage.setItem('products', JSON.stringify(products));
                 console.log('Produto cadastrado:', newProduct);
                 console.log('Todos produtos:', products);
                 
-                // Limpa o formulário e renderiza a lista de produtos
+                
                 productForm.reset();
                 renderProducts();
-                // Show brief success message
+               
                 setTimeout(() => {
                     const successMsg = document.createElement('div');
                     successMsg.textContent = 'Produto cadastrado com sucesso!';
@@ -310,14 +310,14 @@
                 }, 0);
             });
 
-            // Funções globais para manipulação dos produtos
+            
             window.editProduct = function(index) {
                 const originalProduct = products[index];
                 document.getElementById('productName').value = originalProduct.name;
                 document.getElementById('productCategory').value = originalProduct.category;
                 document.getElementById('productPrice').value = originalProduct.price;
                 
-                // Remove the product being edited
+                
                 products.splice(index, 1);
                 localStorage.setItem('products', JSON.stringify(products));
                 renderProducts();
@@ -331,7 +331,7 @@
                 }
             };
 
-            // Renderizar produtos ao carregar a página
+            
             renderProducts();
         });
     </script>
